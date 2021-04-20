@@ -7,6 +7,7 @@ import Contacts from "./components/Pages/Contacts";
 import Cart from "./components/Pages/Cart";
 import PageNotFound from "./components/Pages/PageNotFound";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/catalog.html" component={Catalog} />
         <Route path="/" component={Home} />
       </Switch>
+      <Footer />
     </Router>
   );
 }
