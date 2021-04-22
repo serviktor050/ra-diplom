@@ -98,9 +98,12 @@ section {
   box-shadow: none;
 }
 
-/* Banner */
+/************************************************ Banner ****************************************************/
 .banner {
   position: relative;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .banner-header {
@@ -363,7 +366,7 @@ section {
   box-shadow: none;
 }
 
-/* Banner */
+/* Banner
 .banner {
   position: relative;
 }
@@ -385,7 +388,7 @@ section {
     rgba(161, 179, 191, 0.8) 72.59%,
     rgba(161, 179, 191, 0) 98.05%
   );
-}
+} */
 
 /* Preloader */
 .preloader {

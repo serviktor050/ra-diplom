@@ -1,5 +1,11 @@
 import React from "react";
+import Baner from "../Banner";
 
 export default function Catalog() {
-  return "Страница каталога";
+  return (
+    <>
+      <Baner />
+      <p>Страница каталога</p>
+    </>
+  );
 }
