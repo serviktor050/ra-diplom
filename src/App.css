@@ -1,9 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic-ext");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed&subset=cyrillic-ext");
-/*
-:root {
-}
-*/
+
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -28,12 +25,12 @@ section {
   margin-bottom: 2em;
 }
 
-/* Common Styles */
+/************************************************ Common Styles ****************************************************/
 .invisible {
   opacity: 0;
 }
 
-/* Header */
+/************************************************ Header ****************************************************/
 .header-controls-pics {
   display: flex;
   justify-content: space-between;
@@ -44,7 +41,7 @@ section {
   height: 32px;
   width: 32px;
   margin: 0 10px;
-  /*background-image: url(../img/header-controls-sprite.png);*/
+  background-image: url(./img/header-controls-sprite.png);
   background-repeat: no-repeat;
   cursor: pointer;
 }
@@ -125,7 +122,7 @@ section {
   );
 }
 
-/* Preloader */
+/************************************************ Preloader ****************************************************/
 .preloader {
   margin: 10px auto;
   position: relative;
@@ -172,12 +169,12 @@ section {
   }
 }
 
-/* Top Sales */
+/************************************************ Top Sales ****************************************************/
 .top-sales {
   min-height: 300px;
 }
 
-/* Catalog */
+/************************************************ Catalog ****************************************************/
 .catalog {
   min-height: 600px;
 }
@@ -190,7 +187,37 @@ section {
   margin-bottom: 1em;
 }
 
-/* Footer */
+.catalog-item-size {
+  display: inline-block;
+  padding: 0 10px;
+}
+
+.catalog-item-size.selected {
+  background: #727e86;
+  border-radius: 15px;
+  color: #fff;
+}
+
+.catalog-search-form {
+  display: block;
+  width: 100%;
+  height: 38px;
+  padding: 0 20px;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px #d4e4e6;
+  border-radius: 50px;
+  margin-bottom: 2em;
+}
+.catalog-search-form .form-control {
+  width: 100%;
+  height: 100%;
+  color: #333333;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/************************************************ Footer ****************************************************/
 .footer {
   padding: 0 25px;
 }
@@ -207,7 +234,7 @@ section {
   border-radius: 8px;
   background-color: #ffffff;
   background-repeat: no-repeat;
-  /* background-image: url(../img/footer-sprite.png); */
+  background-image: url(./img/footer-sprite.png);
 }
 .footer-pay-systems:not(:first-child) {
   margin-left: 5px;
@@ -241,7 +268,7 @@ section {
   margin: 0 5px;
   border-radius: 50%;
   background-repeat: no-repeat;
-  /* background-image: url(../img/footer-sprite.png); */
+  background-image: url(./img/footer-sprite.png);
 }
 .footer-social-link-twitter {
   background-position: -107px -42px;
@@ -265,7 +292,7 @@ section {
   display: block;
 }
 
-/* Bootstrap */
+/************************************************ Bootstrap ****************************************************/
 .nav-link.active {
   color: #ff0000;
 }
@@ -278,9 +305,20 @@ h2,
 
 .btn-outline-primary {
   color: #727e86;
+  border-color: #727e86;
 }
 
-a,
+.btn-outline-primary:hover {
+  background-color: #727e86;
+  border-color: #727e86;
+}
+
+/*
+:root {
+}
+*/
+
+/* a,
 a:hover,
 a:visited,
 a:active {
@@ -294,14 +332,16 @@ a:hover {
 section {
   margin-top: 2em;
   margin-bottom: 2em;
-}
+} */
 
 /* Common Styles */
+/*
 .invisible {
   opacity: 0;
 }
-
+*/
 /* Header */
+/*
 .header-controls-pics {
   display: flex;
   justify-content: space-between;
@@ -312,7 +352,7 @@ section {
   height: 32px;
   width: 32px;
   margin: 0 10px;
-  /* background-image: url(../img/header-controls-sprite.png); */
+  background-image: url(../img/header-controls-sprite.png);
   background-repeat: no-repeat;
   cursor: pointer;
 }
@@ -343,7 +383,7 @@ section {
   border-radius: 50%;
   background: linear-gradient(90deg, #ff65a5 1.11%, #ff8076 100%);
   box-shadow: 0px 2px 8px rgba(255, 101, 165, 0.6), inset 0px 1px 1px #ff8076;
-}
+} 
 .header-controls-search-form {
   position: absolute;
   right: 65px;
@@ -364,7 +404,7 @@ section {
   border: none;
   outline: none;
   box-shadow: none;
-}
+}*/
 
 /* Banner
 .banner {
@@ -391,7 +431,7 @@ section {
 } */
 
 /* Preloader */
-.preloader {
+/* .preloader {
   margin: 10px auto;
   position: relative;
   width: 30px;
@@ -405,7 +445,7 @@ section {
   position: absolute;
   border-radius: 50%;
   animation: spin 2s ease infinite;
-}
+} 
 .preloader :first-child {
   background: #19a68c;
   animation-delay: -1.5s;
@@ -420,7 +460,7 @@ section {
 }
 .preloader :last-child {
   background: #727e86;
-}
+} 
 @keyframes spin {
   0%,
   100% {
@@ -435,17 +475,17 @@ section {
   75% {
     transform: translate(0, 160%);
   }
-}
+}*/
 
 /* Top Sales */
-.top-sales {
+/* .top-sales {
   min-height: 300px;
-}
+} */
 
 /* Catalog */
-.catalog {
+/* .catalog {
   min-height: 600px;
-}
+} 
 
 .catalog-categories {
   font-size: 1.3rem;
@@ -484,10 +524,10 @@ section {
   border: none;
   outline: none;
   box-shadow: none;
-}
+}*/
 
 /* Footer */
-.footer {
+/* .footer {
   padding: 0 25px;
 }
 
@@ -503,7 +543,7 @@ section {
   border-radius: 8px;
   background-color: #ffffff;
   background-repeat: no-repeat;
-  /* background-image: url(../img/footer-sprite.png); */
+  background-image: url(../img/footer-sprite.png);
 }
 .footer-pay-systems:not(:first-child) {
   margin-left: 5px;
@@ -525,7 +565,7 @@ section {
 }
 .footer-pay-systems-qiwi {
   background-position: -52px -46px;
-}
+} 
 
 .footer-social-links {
   margin-top: 10px;
@@ -537,7 +577,7 @@ section {
   margin: 0 5px;
   border-radius: 50%;
   background-repeat: no-repeat;
-  /* background-image: url(../img/footer-sprite.png); */
+  background-image: url(../img/footer-sprite.png);
 }
 .footer-social-link-twitter {
   background-position: -107px -42px;
@@ -559,9 +599,10 @@ section {
 
 .footer-contacts-email {
   display: block;
-}
+}*/
 
 /* Bootstrap */
+/*
 .nav-link.active {
   color: #ff0000;
 }
@@ -580,4 +621,4 @@ h2,
 .btn-outline-primary:hover {
   background-color: #727e86;
   border-color: #727e86;
-}
+}*/
