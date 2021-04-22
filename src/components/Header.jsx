@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Menu from "./Menu";
+import headerLogo from "../img/header-logo.png";
 
 export default function Header() {
   return (
@@ -9,7 +10,7 @@ export default function Header() {
         <div className="col">
           <nav className="navbar navbar-expand-sm navbar-light bg-light">
             <Link className="navbar-brand" to="/">
-              <img src="img/header-logo.png" alt="Bosa Noga" />
+              <img src={headerLogo} alt="Bosa Noga" />
             </Link>
             <div className="collapase navbar-collapse" id="navbarMain">
               <Menu />
