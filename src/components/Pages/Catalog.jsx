@@ -3,9 +3,13 @@ import Baner from "../Banner";
 
 export default function Catalog() {
   return (
-    <>
-      <Baner />
-      <p>Страница каталога</p>
-    </>
+    <main class="container">
+      <div class="row">
+        <div class="col">
+          <Baner />
+          <p>Страница каталога</p>
+        </div>
+      </div>
+    </main>
   );
 }
