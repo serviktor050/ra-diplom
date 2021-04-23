@@ -5,7 +5,7 @@ import headerLogo from "../img/header-logo.png";
 import { useState } from "react";
 
 export default function Header() {
-  const [searchFieldView, setSearchFieldView] = useState(false);
+  const [searchFieldView, setSearchFieldView] = useState(true);
 
   const handleClickSearchFieldView = () => {
     if (!searchFieldView) {
