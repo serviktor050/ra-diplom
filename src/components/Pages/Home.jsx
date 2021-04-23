@@ -3,9 +3,13 @@ import Banner from "../Banner";
 
 export default function Home() {
   return (
-    <>
-      <Banner />
-      <p>Домашняя страница</p>
-    </>
+    <main class="container">
+      <div class="row">
+        <div class="col">
+          <Banner />
+          <p>Домашняя страница</p>
+        </div>
+      </div>
+    </main>
   );
 }
