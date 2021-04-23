@@ -5,7 +5,7 @@ import Catalog from "./components/Pages/Catalog";
 import About from "./components/Pages/About";
 import Contacts from "./components/Pages/Contacts";
 import Cart from "./components/Pages/Cart";
-import PageNotFound from "./components/Pages/PageNotFound";
+import Page404 from "./components/Pages/Page404";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -14,12 +14,12 @@ function App() {
     <Router>
       <Header />
       <Switch>
-        <Route path="/404.html" component={PageNotFound} />
         <Route path="/cart.html" component={Cart} />
         <Route path="/contacts.html" component={Contacts} />
         <Route path="/about.html" component={About} />
         <Route path="/catalog.html" component={Catalog} />
         <Route path="/" component={Home} />
+        <Route component={Page404} />
       </Switch>
       <Footer />
     </Router>
