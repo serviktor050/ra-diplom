@@ -9,7 +9,6 @@ export default function Home() {
       <div className="row">
         <div className="col">
           <Banner />
-          <p>Домашняя страница</p>
           <SalesHits />
           <CatalogComponent />
         </div>
