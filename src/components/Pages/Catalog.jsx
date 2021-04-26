@@ -3,9 +3,9 @@ import Baner from "../Banner";
 
 export default function Catalog() {
   return (
-    <main class="container">
-      <div class="row">
-        <div class="col">
+    <main className="container">
+      <div className="row">
+        <div className="col">
           <Baner />
           <p>Страница каталога</p>
         </div>
