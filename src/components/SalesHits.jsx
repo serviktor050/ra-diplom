@@ -1,16 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchSalesHitsRequest } from "./http/actions/actionCreators";
+import Loader from "./Loader";
+import ProductCardSmall from "./ProductCardSmall";
 
 export default function SalesHits() {
-  return (
-    <section className="top-sales">
-      <h2 className="text-center">Хиты продаж!</h2>
+  const { items, loading, error } = useSelector((state) => state.salesHitsList);
+  const dispatch = useDispatch();
 
-      <div className="preloader">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </section>
+  useEffect(() => {
+    dispatch(fetchSalesHitsRequest());
+  }, []);
+
+  return (
+    <>
+      <section className="top-sales">
+        <h2 className="text-center">Хиты продаж!</h2>
+        <div className="row">
+          {loading && <Loader />}
+          {!loading && !error && (
+            <>
+              {items.map((item) => {
+                return (
+                  <ProductCardSmall
+                    key={item.id}
+                    id={item.id}
+                    category={item.category}
+                    title={item.title}
+                    images={item.images}
+                    price={item.price}
+                  />
+                );
+              })}
+            </>
+          )}
+        </div>
+      </section>
+    </>
   );
 }
