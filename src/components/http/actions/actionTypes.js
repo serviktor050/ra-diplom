@@ -1,3 +1,9 @@
+//Для блока "Хиты продаж" на странице "/"
 export const FETCH_SALES_HITS_REQUEST = "FETCH_SALES_HITS_REQUEST";
 export const FETCH_SALES_HITS_FAILURE = "FETCH_SALES_HITS_FAILURE";
 export const FETCH_SALES_HITS_SUCCESS = "FETCH_SALES_HITS_SUCCESS";
+
+//Для блока "Каталог" на страницах "/" и "/catalog.html"
+export const FETCH_PRODUCTS_LIST_REQUEST = "FETCH_PRODUCTS_LIST_REQUEST";
+export const FETCH_PRODUCTS_LIST_FAILURE = "FETCH_PRODUCTS_LIST_FAILURE";
+export const FETCH_PRODUCTS_LIST_SUCCESS = "FETCH_PRODUCTS_LIST_SUCCESS";
