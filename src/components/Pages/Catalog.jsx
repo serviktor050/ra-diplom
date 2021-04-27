@@ -1,12 +1,12 @@
 import React from "react";
-import Baner from "../Banner";
+import Banner from "../Banner";
 
 export default function Catalog() {
   return (
     <main className="container">
       <div className="row">
         <div className="col">
-          <Baner />
+          <Banner />
           <p>Страница каталога</p>
         </div>
       </div>
