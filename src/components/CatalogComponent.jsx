@@ -12,8 +12,6 @@ export default function CatalogComponent() {
   );
   const dispatch = useDispatch();
 
-  console.log(products);
-
   useEffect(() => {
     dispatch(fetchProductsListRequest());
   }, []);
