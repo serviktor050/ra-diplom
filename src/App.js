@@ -18,8 +18,8 @@ function App() {
         <Route path="/contacts.html" component={Contacts} />
         <Route path="/about.html" component={About} />
         <Route path="/catalog.html" component={Catalog} />
-        <Route path="/" component={Home} />
-        <Route component={Page404} />
+        <Route exact path="/" component={Home} />
+        <Route path="*" component={Page404} />
       </Switch>
       <Footer />
     </Router>
