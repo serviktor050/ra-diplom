@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchSalesHitsRequest } from "./http/actions/actionCreators";
 import Loader from "./Loader";
-import ProductCardSmall from "./ProductCardSmall";
+import ProductCardSalesHits from "./ProductCardSalesHits";
 
 export default function SalesHits() {
   const { items, loading, error } = useSelector((state) => state.salesHitsList);
@@ -22,7 +22,7 @@ export default function SalesHits() {
             <>
               {items.map((item) => {
                 return (
-                  <ProductCardSmall
+                  <ProductCardSalesHits
                     key={item.id}
                     id={item.id}
                     category={item.category}
