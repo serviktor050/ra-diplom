@@ -19,11 +19,11 @@ export default function CatalogComponent() {
   return (
     <section className="catalog">
       <h2 className="text-center">Каталог</h2>
-      <CatalogFilter />
-      <div className="row">
-        {loadingCatalog && <Loader />}
-        {!loadingCatalog && !errorCatalog && (
-          <>
+      {loadingCatalog && <Loader />}
+      {!loadingCatalog && !errorCatalog && (
+        <>
+          <CatalogFilter />
+          <div className="row">
             {products.map((product) => {
               return (
                 <ProductCardCatalog
@@ -36,10 +36,10 @@ export default function CatalogComponent() {
                 />
               );
             })}
-          </>
-        )}
-      </div>
-      <ButtonDownloadMore />
+          </div>
+          <ButtonDownloadMore />
+        </>
+      )}
     </section>
   );
 }
