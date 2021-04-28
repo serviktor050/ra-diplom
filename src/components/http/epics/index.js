@@ -5,12 +5,18 @@ import { of } from "rxjs";
 import {
   FETCH_SALES_HITS_REQUEST,
   FETCH_PRODUCTS_LIST_REQUEST,
+  FETCH_PRODUCTS_LIST_FILTER_REQUEST,
+  FETCH_CATEGORIES_REQUEST,
 } from "../actions/actionTypes";
 import {
   fetchSalesHitsFailure,
   fetchSalesHitsSuccess,
   fetchProductsListFailure,
   fetchProductsListSuccess,
+  fetchProductsListFilterFailure,
+  fetchProductsListFilterSuccess,
+  fetchCategoriesFailure,
+  fetchCategoriesSuccess,
 } from "../actions/actionCreators";
 
 //Для блока "Хиты продаж" на странице "/"
@@ -34,5 +40,36 @@ export const fetchProductsListEpic = (action$) =>
         map((o) => fetchProductsListSuccess(o)),
         catchError((e) => of(fetchProductsListFailure(e)))
       )
+    )
+  );
+
+//Для фильтра блока "Каталог" на страницах "/" и "/catalog.html"
+export const fetchProductsListFilterEpic = (action$) =>
+  action$.pipe(
+    ofType(FETCH_PRODUCTS_LIST_FILTER_REQUEST),
+    map((o) => o.payload.id),
+    switchMap((o) =>
+      ajax
+        .getJSON(
+          `https://ra-diplom-server.herokuapp.com/api/items?categoryId=${o}`
+        )
+        .pipe(
+          map((o) => fetchProductsListFilterSuccess(o)),
+          catchError((e) => of(fetchProductsListFilterFailure(e)))
+        )
+    )
+  );
+
+//Для категорий фильтра блока "Каталог" на страницах "/" и "/catalog.html"
+export const fetchCategoriesEpic = (action$) =>
+  action$.pipe(
+    ofType(FETCH_CATEGORIES_REQUEST),
+    switchMap(() =>
+      ajax
+        .getJSON(`https://ra-diplom-server.herokuapp.com/api/categories`)
+        .pipe(
+          map((o) => fetchCategoriesSuccess(o)),
+          catchError((e) => of(fetchCategoriesFailure(e)))
+        )
     )
   );
