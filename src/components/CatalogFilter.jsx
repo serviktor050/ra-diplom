@@ -8,7 +8,7 @@ import {
 } from "./http/actions/actionCreators";
 
 export default function CatalogFilter() {
-  const { categories, loadingCategories, errorCategories } = useSelector(
+  const { categories /*loadingCategories, errorCategories*/ } = useSelector(
     (state) => state.categoriesList
   );
 
@@ -37,11 +37,10 @@ export default function CatalogFilter() {
       <>
         {categories.map((category) => {
           return (
-            <li className="nav-item">
+            <li className="nav-item" key={category.id}>
               <Link
                 className="nav-link"
                 to="#"
-                key={category.id}
                 id={category.id}
                 onClick={filterProducts}
               >

@@ -11,6 +11,9 @@ import {
   FETCH_CATEGORIES_REQUEST,
   FETCH_CATEGORIES_FAILURE,
   FETCH_CATEGORIES_SUCCESS,
+  FETCH_DOWNLOAD_MORE_REQUEST,
+  FETCH_DOWNLOAD_MORE_FAILURE,
+  FETCH_DOWNLOAD_MORE_SUCCESS,
 } from "./actionTypes";
 
 //Для блока "Хиты продаж" на странице "/"
@@ -90,5 +93,28 @@ export const fetchCategoriesSuccess = (categories) => ({
   type: FETCH_CATEGORIES_SUCCESS,
   payload: {
     categories,
+  },
+});
+
+//Для кнопки "Загрузить еще" (для отдельных категорий) на страницах "/" и "/catalog.html"
+export const fetchDownloadMoreRequest = (id, length) => ({
+  type: FETCH_DOWNLOAD_MORE_REQUEST,
+  payload: {
+    id,
+    length,
+  },
+});
+
+export const fetchDownloadMoreFailure = (errorDownload) => ({
+  type: FETCH_DOWNLOAD_MORE_FAILURE,
+  payload: {
+    errorDownload,
+  },
+});
+
+export const fetchDownloadMoreSuccess = (productsDownload) => ({
+  type: FETCH_DOWNLOAD_MORE_SUCCESS,
+  payload: {
+    productsDownload,
   },
 });
