@@ -10,7 +10,10 @@ export default function Home() {
         <div className="col">
           <Banner />
           <SalesHits />
-          <CatalogComponent />
+          <section className="catalog">
+            <h2 className="text-center">Каталог</h2>
+            <CatalogComponent />
+          </section>
         </div>
       </div>
     </main>
