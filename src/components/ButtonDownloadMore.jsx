@@ -1,6 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchDownloadMoreRequest } from "./http/actions/actionCreators";
+import {
+  fetchDownloadMoreRequest,
+  fetchDownloadMoreAllRequest,
+} from "./http/actions/actionCreators";
 
 export default function ButtonDownloadMore() {
   const { products, /*loadingCatalog, errorCatalog,*/ category } = useSelector(
@@ -13,7 +16,11 @@ export default function ButtonDownloadMore() {
   const dispatch = useDispatch();
 
   const downloadMore = () => {
-    dispatch(fetchDownloadMoreRequest(id, length));
+    if (id !== null) {
+      dispatch(fetchDownloadMoreRequest(id, length));
+    } else {
+      dispatch(fetchDownloadMoreAllRequest(length));
+    }
   };
   return (
     <div className="text-center">

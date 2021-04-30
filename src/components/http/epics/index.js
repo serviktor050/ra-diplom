@@ -8,6 +8,7 @@ import {
   FETCH_PRODUCTS_LIST_FILTER_REQUEST,
   FETCH_CATEGORIES_REQUEST,
   FETCH_DOWNLOAD_MORE_REQUEST,
+  FETCH_DOWNLOAD_MORE_ALL_REQUEST,
 } from "../actions/actionTypes";
 import {
   fetchSalesHitsFailure,
@@ -20,6 +21,8 @@ import {
   fetchCategoriesSuccess,
   fetchDownloadMoreFailure,
   fetchDownloadMoreSuccess,
+  fetchDownloadMoreAllFailure,
+  fetchDownloadMoreAllSuccess,
 } from "../actions/actionCreators";
 
 //Для блока "Хиты продаж" на странице "/"
@@ -90,6 +93,23 @@ export const fetchDownloadMoreEpic = (action$) =>
         .pipe(
           map((o) => fetchDownloadMoreSuccess(o)),
           catchError((e) => of(fetchDownloadMoreFailure(e)))
+        )
+    )
+  );
+
+//Для кнопки "Загрузить еще" (для всех категорий) на страницах "/" и "/catalog.html"
+export const fetchDownloadMoreAllEpic = (action$) =>
+  action$.pipe(
+    ofType(FETCH_DOWNLOAD_MORE_ALL_REQUEST),
+    map((o) => o.payload),
+    switchMap((o) =>
+      ajax
+        .getJSON(
+          `https://ra-diplom-server.herokuapp.com/api/items?offset=${o.length}`
+        )
+        .pipe(
+          map((o) => fetchDownloadMoreAllSuccess(o)),
+          catchError((e) => of(fetchDownloadMoreAllFailure(e)))
         )
     )
   );
