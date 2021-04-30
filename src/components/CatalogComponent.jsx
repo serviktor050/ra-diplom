@@ -7,18 +7,26 @@ import CatalogFilter from "./CatalogFilter";
 import ButtonDownloadMore from "./ButtonDownloadMore";
 
 export default function CatalogComponent() {
-  const { products, loadingCatalog, errorCatalog, buttonActive } = useSelector(
-    (state) => state.productsList
-  );
+  const {
+    products,
+    loadingCatalog,
+    errorCatalog,
+    buttonActive,
+    search,
+  } = useSelector((state) => state.productsList);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProductsListRequest());
+    if (search !== "") {
+      console.log("Проверка");
+    } else {
+      dispatch(fetchProductsListRequest());
+    }
   }, []);
 
   return (
-    <section className="catalog">
-      <h2 className="text-center">Каталог</h2>
+    <>
       {loadingCatalog && <Loader />}
       {!loadingCatalog && !errorCatalog && (
         <>
@@ -40,6 +48,6 @@ export default function CatalogComponent() {
           {buttonActive && <ButtonDownloadMore />}
         </>
       )}
-    </section>
+    </>
   );
 }

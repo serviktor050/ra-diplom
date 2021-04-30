@@ -11,6 +11,7 @@ import {
   FETCH_DOWNLOAD_MORE_ALL_REQUEST,
   FETCH_DOWNLOAD_MORE_ALL_FAILURE,
   FETCH_DOWNLOAD_MORE_ALL_SUCCESS,
+  CHANGE_SEARCH_FIELD,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
   loadingDownloadMore: false,
   errorDownloadMore: null,
   buttonActive: true,
+  search: "",
 };
 
 export default function productsListReducer(state = initialState, action) {
@@ -137,6 +139,15 @@ export default function productsListReducer(state = initialState, action) {
           buttonActive: true,
         };
       }
+
+    //Для работы поиска
+    case CHANGE_SEARCH_FIELD:
+      const { search } = action.payload;
+      console.log(search);
+      return {
+        ...state,
+        search: search,
+      };
     default:
       return state;
   }

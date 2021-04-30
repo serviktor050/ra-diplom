@@ -17,10 +17,10 @@ import {
   FETCH_DOWNLOAD_MORE_ALL_REQUEST,
   FETCH_DOWNLOAD_MORE_ALL_FAILURE,
   FETCH_DOWNLOAD_MORE_ALL_SUCCESS,
+  CHANGE_SEARCH_FIELD,
 } from "./actionTypes";
 
 //Для блока "Хиты продаж" на странице "/"
-
 export const fetchSalesHitsRequest = () => ({
   type: FETCH_SALES_HITS_REQUEST,
 });
@@ -141,5 +141,12 @@ export const fetchDownloadMoreAllSuccess = (productsDownloadAll) => ({
   type: FETCH_DOWNLOAD_MORE_ALL_SUCCESS,
   payload: {
     productsDownloadAll,
+  },
+});
+
+export const changeSearchField = (search) => ({
+  type: CHANGE_SEARCH_FIELD,
+  payload: {
+    search,
   },
 });

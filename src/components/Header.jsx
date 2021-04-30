@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 import Menu from "./Menu";
 import headerLogo from "../img/header-logo.png";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeSearchField } from "./http/actions/actionCreators";
 
 export default function Header() {
   const [searchFieldView, setSearchFieldView] = useState(true);
+  const [searchFieldInput, setSearchFieldInput] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleClickSearchFieldView = () => {
     if (!searchFieldView) {
@@ -13,6 +18,11 @@ export default function Header() {
     } else {
       setSearchFieldView(false);
     }
+  };
+
+  const handleSearch = (evt) => {
+    setSearchFieldInput(evt.target.value);
+    dispatch(changeSearchField(evt.target.value));
   };
 
   return (
@@ -27,13 +37,28 @@ export default function Header() {
               <Menu />
               <div>
                 <div className="header-controls-pics">
-                  <div
-                    data-id="search-expander"
-                    className="header-controls-pic header-controls-search"
-                    onClick={() => {
-                      handleClickSearchFieldView();
-                    }}
-                  ></div>
+                  {!searchFieldInput && (
+                    <>
+                      <div
+                        data-id="search-expander"
+                        className="header-controls-pic header-controls-search"
+                        onClick={() => {
+                          handleClickSearchFieldView();
+                        }}
+                      ></div>
+                    </>
+                  )}
+                  {searchFieldInput && (
+                    <>
+                      <Link to="/catalog.html">
+                        <div
+                          data-id="search-expander"
+                          className="header-controls-pic header-controls-search"
+                        ></div>
+                      </Link>
+                    </>
+                  )}
+
                   <div className="header-controls-pic header-controls-cart">
                     <div className="header-controls-cart-full">1</div>
                     <div className="header-controls-cart-menu"></div>
@@ -45,7 +70,11 @@ export default function Header() {
                     searchFieldView && "invisible"
                   }`}
                 >
-                  <input className="form-control" placeholder="Поиск" />
+                  <input
+                    className="form-control"
+                    placeholder="Поиск"
+                    onChange={handleSearch}
+                  />
                 </form>
               </div>
             </div>
