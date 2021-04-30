@@ -17,6 +17,7 @@ const initialState = {
   errorCatalog: null,
   loadingDownloadMore: false,
   errorDownloadMore: null,
+  buttonActive: true,
 };
 
 export default function productsListReducer(state = initialState, action) {
@@ -64,6 +65,7 @@ export default function productsListReducer(state = initialState, action) {
         loadingCatalog: false,
         error: null,
         category: action.payload.products[0].category,
+        buttonActive: true,
       };
 
     //Для кнопки "Загрузить еще" (для отдельных категорий) на страницах "/" и "/catalog.html"
@@ -80,14 +82,24 @@ export default function productsListReducer(state = initialState, action) {
         errorDownloadMore: action.payload.errorDownloadMore,
       };
     case FETCH_DOWNLOAD_MORE_SUCCESS:
-      console.log(action.payload.productsDownload);
       const { productsDownload } = action.payload;
-      return {
-        ...state,
-        products: [...state.products, ...productsDownload],
-        loadingDownloadMore: false,
-        errorDownloadMore: null,
-      };
+      if (productsDownload.length < 6 || productsDownload.length === 0) {
+        return {
+          ...state,
+          products: [...state.products, ...productsDownload],
+          loadingDownloadMore: false,
+          errorDownloadMore: null,
+          buttonActive: false,
+        };
+      } else {
+        return {
+          ...state,
+          products: [...state.products, ...productsDownload],
+          loadingDownloadMore: false,
+          errorDownloadMore: null,
+          buttonActive: true,
+        };
+      }
     default:
       return state;
   }

@@ -7,7 +7,7 @@ import CatalogFilter from "./CatalogFilter";
 import ButtonDownloadMore from "./ButtonDownloadMore";
 
 export default function CatalogComponent() {
-  const { products, loadingCatalog, errorCatalog } = useSelector(
+  const { products, loadingCatalog, errorCatalog, buttonActive } = useSelector(
     (state) => state.productsList
   );
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ export default function CatalogComponent() {
               );
             })}
           </div>
-          <ButtonDownloadMore />
+          {buttonActive && <ButtonDownloadMore />}
         </>
       )}
     </section>
