@@ -54,6 +54,9 @@ export default function Header() {
                         <div
                           data-id="search-expander"
                           className="header-controls-pic header-controls-search"
+                          onClick={() => {
+                            handleClickSearchFieldView();
+                          }}
                         ></div>
                       </Link>
                     </>
