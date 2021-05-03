@@ -9,6 +9,7 @@ import {
   FETCH_CATEGORIES_REQUEST,
   FETCH_DOWNLOAD_MORE_REQUEST,
   FETCH_DOWNLOAD_MORE_ALL_REQUEST,
+  FETCH_SEARCH_PRODUCTS_LIST_REQUEST,
 } from "../actions/actionTypes";
 import {
   fetchSalesHitsFailure,
@@ -23,6 +24,8 @@ import {
   fetchDownloadMoreSuccess,
   fetchDownloadMoreAllFailure,
   fetchDownloadMoreAllSuccess,
+  fetchSearchProductsListFailure,
+  fetchSearchProductsListSuccess,
 } from "../actions/actionCreators";
 
 //Для блока "Хиты продаж" на странице "/"
@@ -110,6 +113,21 @@ export const fetchDownloadMoreAllEpic = (action$) =>
         .pipe(
           map((o) => fetchDownloadMoreAllSuccess(o)),
           catchError((e) => of(fetchDownloadMoreAllFailure(e)))
+        )
+    )
+  );
+
+//Для загрузки каталога при заполненном поиске в хедере сайта
+export const fetchSearchProductsListEpic = (action$) =>
+  action$.pipe(
+    ofType(FETCH_SEARCH_PRODUCTS_LIST_REQUEST),
+    map((o) => o.payload.search),
+    switchMap((seacrh) =>
+      ajax
+        .getJSON(`https://ra-diplom-server.herokuapp.com/api/items?q=${seacrh}`)
+        .pipe(
+          map((o) => fetchSearchProductsListSuccess(o)),
+          catchError((e) => of(fetchSearchProductsListFailure(e)))
         )
     )
   );

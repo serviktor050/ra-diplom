@@ -12,6 +12,9 @@ import {
   FETCH_DOWNLOAD_MORE_ALL_FAILURE,
   FETCH_DOWNLOAD_MORE_ALL_SUCCESS,
   CHANGE_SEARCH_FIELD,
+  FETCH_SEARCH_PRODUCTS_LIST_REQUEST,
+  FETCH_SEARCH_PRODUCTS_LIST_FAILURE,
+  FETCH_SEARCH_PRODUCTS_LIST_SUCCESS,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -47,7 +50,7 @@ export default function productsListReducer(state = initialState, action) {
         ...state,
         products,
         loadingCatalog: false,
-        error: null,
+        errorCatalog: null,
         category: null,
       };
 
@@ -69,7 +72,7 @@ export default function productsListReducer(state = initialState, action) {
         ...state,
         products: action.payload.products,
         loadingCatalog: false,
-        error: null,
+        errorCatalog: null,
         category: action.payload.products[0].category,
         buttonActive: true,
       };
@@ -147,6 +150,29 @@ export default function productsListReducer(state = initialState, action) {
       return {
         ...state,
         search: search,
+      };
+
+    //Для загрузки каталога при заполненном поиске в хедере сайта
+    case FETCH_SEARCH_PRODUCTS_LIST_REQUEST:
+      return {
+        ...state,
+        loadingCatalog: true,
+        errorCatalog: null,
+      };
+    case FETCH_SEARCH_PRODUCTS_LIST_FAILURE:
+      const { errorSearchCatalog } = action.payload;
+      return {
+        ...state,
+        loadingCatalog: false,
+        errorCatalog: errorSearchCatalog,
+      };
+    case FETCH_SEARCH_PRODUCTS_LIST_SUCCESS:
+      const { searchProducts } = action.payload;
+      return {
+        ...state,
+        products: [...searchProducts],
+        loadingCatalog: false,
+        errorCatalog: null,
       };
     default:
       return state;

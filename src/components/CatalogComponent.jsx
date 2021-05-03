@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchProductsListRequest } from "./http/actions/actionCreators";
+import {
+  fetchProductsListRequest,
+  fetchSearchProductsListRequest,
+} from "./http/actions/actionCreators";
 import Loader from "./Loader";
 import ProductCardCatalog from "./ProductCardCatalog";
 import CatalogFilter from "./CatalogFilter";
@@ -19,7 +22,7 @@ export default function CatalogComponent() {
 
   useEffect(() => {
     if (search !== "") {
-      console.log("Проверка");
+      dispatch(fetchSearchProductsListRequest(search));
     } else {
       dispatch(fetchProductsListRequest());
     }

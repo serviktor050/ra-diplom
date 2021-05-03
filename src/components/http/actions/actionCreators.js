@@ -18,6 +18,9 @@ import {
   FETCH_DOWNLOAD_MORE_ALL_FAILURE,
   FETCH_DOWNLOAD_MORE_ALL_SUCCESS,
   CHANGE_SEARCH_FIELD,
+  FETCH_SEARCH_PRODUCTS_LIST_REQUEST,
+  FETCH_SEARCH_PRODUCTS_LIST_FAILURE,
+  FETCH_SEARCH_PRODUCTS_LIST_SUCCESS,
 } from "./actionTypes";
 
 //Для блока "Хиты продаж" на странице "/"
@@ -148,5 +151,30 @@ export const changeSearchField = (search) => ({
   type: CHANGE_SEARCH_FIELD,
   payload: {
     search,
+  },
+});
+
+//Для загрузки каталога при заполненном поиске в хедере сайта
+export const fetchSearchProductsListRequest = (search) => (
+  console.log(search),
+  {
+    type: FETCH_SEARCH_PRODUCTS_LIST_REQUEST,
+    payload: {
+      search,
+    },
+  }
+);
+
+export const fetchSearchProductsListFailure = (errorSearchCatalog) => ({
+  type: FETCH_SEARCH_PRODUCTS_LIST_FAILURE,
+  payload: {
+    errorSearchCatalog,
+  },
+});
+
+export const fetchSearchProductsListSuccess = (searchProducts) => ({
+  type: FETCH_SEARCH_PRODUCTS_LIST_SUCCESS,
+  payload: {
+    searchProducts,
   },
 });
