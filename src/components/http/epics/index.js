@@ -10,6 +10,8 @@ import {
   FETCH_DOWNLOAD_MORE_REQUEST,
   FETCH_DOWNLOAD_MORE_ALL_REQUEST,
   FETCH_SEARCH_PRODUCTS_LIST_REQUEST,
+  FETCH_SEARCH_PRODUCTS_LIST_FILTER_REQUEST,
+  // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
 } from "../actions/actionTypes";
 import {
   fetchSalesHitsFailure,
@@ -26,6 +28,10 @@ import {
   fetchDownloadMoreAllSuccess,
   fetchSearchProductsListFailure,
   fetchSearchProductsListSuccess,
+  fetchSearchProductsListFilterFailure,
+  fetchSearchProductsListFilterSuccess,
+  // fetchDownloadMoreSearchResultsFailure,
+  // fetchDownloadMoreSearchResultsSuccess,
 } from "../actions/actionCreators";
 
 //Для блока "Хиты продаж" на странице "/"
@@ -131,3 +137,40 @@ export const fetchSearchProductsListEpic = (action$) =>
         )
     )
   );
+
+//Для фильтра блока "Каталог" на странице "/catalog.html" с результатами поиска
+export const fetchSearchProductsListFilterEpic = (action$) =>
+  action$.pipe(
+    ofType(FETCH_SEARCH_PRODUCTS_LIST_FILTER_REQUEST),
+    map((o) => o.payload),
+    switchMap((o) =>
+      ajax
+        .getJSON(
+          `https://ra-diplom-server.herokuapp.com/api/items?categoryId=${o.id}&q=${o.searchRequest}`
+        )
+        .pipe(
+          map((o) => fetchSearchProductsListFilterSuccess(o)),
+          catchError((e) => of(fetchSearchProductsListFilterFailure(e)))
+        )
+    )
+  );
+
+// //Для кнопки "Загрузить еще" (для отдельных категорий) на странице "/catalog.html" для результатов поиска
+// export const fetchDownloadMoreSearchResultsEpic = (action$) =>
+//   action$.pipe(
+//     ofType(FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST),
+//     map((o) => {
+//       console.log(o);
+//       return o.payload;
+//     })
+//     // switchMap((o) =>
+//     //   ajax
+//     //     .getJSON(
+//     //       `https://ra-diplom-server.herokuapp.com/api/items?categoryId=${o.id}&offset=${o.length}`
+//     //     )
+//     //     .pipe(
+//     //       map((o) => fetchDownloadMoreSearchResultsSuccess(o)),
+//     //       catchError((e) => of(fetchDownloadMoreSearchResultsFailure(e)))
+//     //     )
+//     // )
+//   );

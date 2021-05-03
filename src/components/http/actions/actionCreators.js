@@ -21,6 +21,12 @@ import {
   FETCH_SEARCH_PRODUCTS_LIST_REQUEST,
   FETCH_SEARCH_PRODUCTS_LIST_FAILURE,
   FETCH_SEARCH_PRODUCTS_LIST_SUCCESS,
+  FETCH_SEARCH_PRODUCTS_LIST_FILTER_REQUEST,
+  FETCH_SEARCH_PRODUCTS_LIST_FILTER_FAILURE,
+  FETCH_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS,
+  // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
+  // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE,
+  // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS,
 } from "./actionTypes";
 
 //Для блока "Хиты продаж" на странице "/"
@@ -155,15 +161,12 @@ export const changeSearchField = (search) => ({
 });
 
 //Для загрузки каталога при заполненном поиске в хедере сайта
-export const fetchSearchProductsListRequest = (search) => (
-  console.log(search),
-  {
-    type: FETCH_SEARCH_PRODUCTS_LIST_REQUEST,
-    payload: {
-      search,
-    },
-  }
-);
+export const fetchSearchProductsListRequest = (search) => ({
+  type: FETCH_SEARCH_PRODUCTS_LIST_REQUEST,
+  payload: {
+    search,
+  },
+});
 
 export const fetchSearchProductsListFailure = (errorSearchCatalog) => ({
   type: FETCH_SEARCH_PRODUCTS_LIST_FAILURE,
@@ -178,3 +181,61 @@ export const fetchSearchProductsListSuccess = (searchProducts) => ({
     searchProducts,
   },
 });
+
+//Для фильтра блока "Каталог" на странице "/catalog.html" с результатами поиска
+export const fetchSearchProductsListFilterRequest = (id, searchRequest) => ({
+  type: FETCH_SEARCH_PRODUCTS_LIST_FILTER_REQUEST,
+  payload: {
+    id,
+    searchRequest,
+  },
+});
+
+export const fetchSearchProductsListFilterFailure = (
+  errorSearchFilterCatalog
+) => ({
+  type: FETCH_SEARCH_PRODUCTS_LIST_FILTER_FAILURE,
+  payload: {
+    errorSearchFilterCatalog,
+  },
+});
+
+export const fetchSearchProductsListFilterSuccess = (productsSearchFilter) => ({
+  type: FETCH_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS,
+  payload: {
+    productsSearchFilter,
+  },
+});
+
+// //Для кнопки "Загрузить еще" (для отдельных категорий) на странице "/catalog.html" для результатов поиска
+// export const fetchDownloadMoreSearchResultsRequest = (
+//   id,
+//   length,
+//   searchString
+// ) => (
+//   console.log(searchString),
+//   {
+//     type: FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
+//     payload: {
+//       id,
+//       length,
+//       searchString,
+//     },
+//   }
+// );
+
+// export const fetchDownloadMoreSearchResultsFailure = (errorSearchDownload) => ({
+//   type: FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE,
+//   payload: {
+//     errorSearchDownload,
+//   },
+// });
+
+// export const fetchDownloadMoreSearchResultsSuccess = (
+//   productsSearchDownload
+// ) => ({
+//   type: FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS,
+//   payload: {
+//     productsSearchDownload,
+//   },
+// });

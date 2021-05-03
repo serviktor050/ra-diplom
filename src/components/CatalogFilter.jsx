@@ -5,12 +5,17 @@ import {
   fetchProductsListRequest,
   fetchProductsListFilterRequest,
   fetchCategoriesRequest,
+  fetchSearchProductsListFilterRequest,
 } from "./http/actions/actionCreators";
 
 export default function CatalogFilter() {
   const { categories /*loadingCategories, errorCategories*/ } = useSelector(
     (state) => state.categoriesList
   );
+
+  const { search } = useSelector((state) => state.productsList);
+
+  let searchRequest = search;
 
   const dispatch = useDispatch();
 
@@ -24,7 +29,11 @@ export default function CatalogFilter() {
 
   const filterProducts = (evt) => {
     let id = evt.target.id;
-    dispatch(fetchProductsListFilterRequest(id));
+    if (searchRequest !== "") {
+      dispatch(fetchSearchProductsListFilterRequest(id, searchRequest));
+    } else {
+      dispatch(fetchProductsListFilterRequest(id));
+    }
   };
 
   return (

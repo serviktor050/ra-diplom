@@ -15,6 +15,12 @@ import {
   FETCH_SEARCH_PRODUCTS_LIST_REQUEST,
   FETCH_SEARCH_PRODUCTS_LIST_FAILURE,
   FETCH_SEARCH_PRODUCTS_LIST_SUCCESS,
+  FETCH_SEARCH_PRODUCTS_LIST_FILTER_REQUEST,
+  FETCH_SEARCH_PRODUCTS_LIST_FILTER_FAILURE,
+  FETCH_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS,
+  // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
+  // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE,
+  // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -146,7 +152,6 @@ export default function productsListReducer(state = initialState, action) {
     //Для работы поиска
     case CHANGE_SEARCH_FIELD:
       const { search } = action.payload;
-      console.log(search);
       return {
         ...state,
         search: search,
@@ -174,6 +179,65 @@ export default function productsListReducer(state = initialState, action) {
         loadingCatalog: false,
         errorCatalog: null,
       };
+
+    //Для фильтра блока "Каталог" на страницах "/" и "/catalog.html"
+    case FETCH_SEARCH_PRODUCTS_LIST_FILTER_REQUEST:
+      return {
+        ...state,
+        loadingCatalog: true,
+        errorCatalog: null,
+      };
+    case FETCH_SEARCH_PRODUCTS_LIST_FILTER_FAILURE:
+      return {
+        ...state,
+        loadingCatalog: false,
+        errorCatalog: action.payload.errorSearchFilterCatalog,
+      };
+    case FETCH_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS:
+      return {
+        ...state,
+        products: action.payload.productsSearchFilter,
+        loadingCatalog: false,
+        errorCatalog: null,
+        category: action.payload.productsSearchFilter[0].category,
+        buttonActive: true,
+      };
+
+    // //Для кнопки "Загрузить еще" (для отдельных категорий) на странице "/catalog.html" для результатов поиска
+    // case FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST:
+    //   return {
+    //     ...state,
+    //     loadingDownloadMore: true,
+    //     errorDownloadMore: null,
+    //   };
+    // case FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE:
+    //   return {
+    //     ...state,
+    //     loadingDownloadMore: false,
+    //     errorDownloadMore: action.payload.errorSearchDownload,
+    //   };
+    // case FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS:
+    //   const { productsSearchDownload } = action.payload;
+    //   if (
+    //     productsSearchDownload.length < 6 ||
+    //     productsSearchDownload.length === 0
+    //   ) {
+    //     return {
+    //       ...state,
+    //       products: [...state.products, ...productsSearchDownload],
+    //       loadingDownloadMore: false,
+    //       errorDownloadMore: null,
+    //       buttonActive: false,
+    //     };
+    //   } else {
+    //     return {
+    //       ...state,
+    //       products: [...state.products, ...productsSearchDownload],
+    //       loadingDownloadMore: false,
+    //       errorDownloadMore: null,
+    //       buttonActive: true,
+    //     };
+    //   }
     default:
       return state;
   }
