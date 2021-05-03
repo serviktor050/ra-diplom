@@ -12,6 +12,7 @@ import {
   fetchDownloadMoreAllEpic,
   fetchSearchProductsListEpic,
   fetchSearchProductsListFilterEpic,
+  fetchAllSearchProductsListFilterEpic,
   // fetchDownloadMoreSearchResultsEpic,
 } from "../epics/index";
 
@@ -31,7 +32,8 @@ const epic = combineEpics(
   fetchDownloadMoreEpic,
   fetchDownloadMoreAllEpic,
   fetchSearchProductsListEpic,
-  fetchSearchProductsListFilterEpic
+  fetchSearchProductsListFilterEpic,
+  fetchAllSearchProductsListFilterEpic
   // fetchDownloadMoreSearchResultsEpic
 );
 

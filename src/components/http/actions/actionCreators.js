@@ -24,6 +24,9 @@ import {
   FETCH_SEARCH_PRODUCTS_LIST_FILTER_REQUEST,
   FETCH_SEARCH_PRODUCTS_LIST_FILTER_FAILURE,
   FETCH_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS,
+  FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_REQUEST,
+  FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_FAILURE,
+  FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS,
   // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
   // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE,
   // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS,
@@ -202,6 +205,32 @@ export const fetchSearchProductsListFilterFailure = (
 
 export const fetchSearchProductsListFilterSuccess = (productsSearchFilter) => ({
   type: FETCH_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS,
+  payload: {
+    productsSearchFilter,
+  },
+});
+
+//Для вкладки "Все" фильтра блока "Каталог" на странице "/catalog.html" с результатами поиска
+export const fetchAllSearchProductsListFilterRequest = (searchRequest) => ({
+  type: FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_REQUEST,
+  payload: {
+    searchRequest,
+  },
+});
+
+export const fetchAllSearchProductsListFilterFailure = (
+  errorSearchFilterCatalog
+) => ({
+  type: FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_FAILURE,
+  payload: {
+    errorSearchFilterCatalog,
+  },
+});
+
+export const fetchAllSearchProductsListFilterSuccess = (
+  productsSearchFilter
+) => ({
+  type: FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS,
   payload: {
     productsSearchFilter,
   },

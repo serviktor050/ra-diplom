@@ -6,6 +6,7 @@ import {
   fetchProductsListFilterRequest,
   fetchCategoriesRequest,
   fetchSearchProductsListFilterRequest,
+  fetchAllSearchProductsListFilterRequest,
 } from "./http/actions/actionCreators";
 
 export default function CatalogFilter() {
@@ -24,7 +25,11 @@ export default function CatalogFilter() {
   }, []);
 
   const downloadAllProducts = () => {
-    dispatch(fetchProductsListRequest());
+    if (searchRequest !== "") {
+      dispatch(fetchAllSearchProductsListFilterRequest(searchRequest));
+    } else {
+      dispatch(fetchProductsListRequest());
+    }
   };
 
   const filterProducts = (evt) => {

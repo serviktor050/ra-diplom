@@ -18,6 +18,9 @@ import {
   FETCH_SEARCH_PRODUCTS_LIST_FILTER_REQUEST,
   FETCH_SEARCH_PRODUCTS_LIST_FILTER_FAILURE,
   FETCH_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS,
+  FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_REQUEST,
+  FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_FAILURE,
+  FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS,
   // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
   // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE,
   // FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS,
@@ -200,6 +203,29 @@ export default function productsListReducer(state = initialState, action) {
         loadingCatalog: false,
         errorCatalog: null,
         category: action.payload.productsSearchFilter[0].category,
+        buttonActive: true,
+      };
+
+    //Для фильтра блока "Каталог" на страницах "/" и "/catalog.html"
+    case FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_REQUEST:
+      return {
+        ...state,
+        loadingCatalog: true,
+        errorCatalog: null,
+      };
+    case FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_FAILURE:
+      return {
+        ...state,
+        loadingCatalog: false,
+        errorCatalog: action.payload.errorSearchFilterCatalog,
+      };
+    case FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS:
+      return {
+        ...state,
+        products: action.payload.productsSearchFilter,
+        loadingCatalog: false,
+        errorCatalog: null,
+        category: null,
         buttonActive: true,
       };
 

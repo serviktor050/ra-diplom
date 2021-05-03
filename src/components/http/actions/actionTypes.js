@@ -53,6 +53,14 @@ export const FETCH_SEARCH_PRODUCTS_LIST_FILTER_FAILURE =
 export const FETCH_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS =
   "FETCH_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS";
 
+//Для вкладки "Все" фильтра блока "Каталог" на странице "/catalog.html" с результатами поиска
+export const FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_REQUEST =
+  "FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_REQUEST";
+export const FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_FAILURE =
+  "FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_FAILURE";
+export const FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS =
+  "FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS";
+
 // //Для кнопки "Загрузить еще" (для отдельных категорий) на странице "/catalog.html" для результатов поиска
 // export const FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST =
 //   "FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST";
