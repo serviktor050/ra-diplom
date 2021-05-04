@@ -14,8 +14,11 @@ export default function CatalogFilter() {
     (state) => state.categoriesList
   );
 
-  const { search } = useSelector((state) => state.productsList);
+  const { search, selectedCategory } = useSelector(
+    (state) => state.productsList
+  );
 
+  const isAllActive = selectedCategory === 0;
   let searchRequest = search;
 
   const dispatch = useDispatch();
@@ -32,8 +35,7 @@ export default function CatalogFilter() {
     }
   };
 
-  const filterProducts = (evt) => {
-    let id = evt.target.id;
+  const filterProducts = (id) => {
     if (searchRequest !== "") {
       dispatch(fetchSearchProductsListFilterRequest(id, searchRequest));
     } else {
@@ -44,19 +46,27 @@ export default function CatalogFilter() {
   return (
     <ul className="catalog-categories nav justify-content-center">
       <li className="nav-item">
-        <Link className="nav-link" to="#" onClick={downloadAllProducts}>
+        <Link
+          className={`nav-link ${isAllActive ? "nav-link-is-active" : ""}`}
+          to="#"
+          onClick={downloadAllProducts}
+        >
           Все
         </Link>
       </li>
       <>
         {categories.map((category) => {
+          const isActiveCaterory = category.id === selectedCategory;
           return (
             <li className="nav-item" key={category.id}>
               <Link
-                className="nav-link"
+                className={`nav-link ${
+                  isActiveCaterory ? "nav-link-is-active" : ""
+                }`}
                 to="#"
-                id={category.id}
-                onClick={filterProducts}
+                onClick={() => {
+                  filterProducts(category.id);
+                }}
               >
                 {category.title}
               </Link>
@@ -66,33 +76,4 @@ export default function CatalogFilter() {
       </>
     </ul>
   );
-}
-
-//Старый вариант (оставил на всякий случай)
-
-{
-  /* <li className="nav-item">
-        <Link className="nav-link" to="#" onClick={filterProducts}>
-          Женская обувь
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link
-          className="nav-link"
-          to="#"
-          onClick={filterProducts}
-        >
-          Мужская обувь
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="#" onClick={filterProducts}>
-          Обувь унисекс
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="#" onClick={filterProducts}>
-          Детская обувь
-        </Link>
-      </li> */
 }

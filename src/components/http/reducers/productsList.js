@@ -29,6 +29,7 @@ import {
 const initialState = {
   products: [],
   category: null,
+  selectedCategory: 0,
   loadingCatalog: false,
   errorCatalog: null,
   loadingDownloadMore: false,
@@ -61,6 +62,7 @@ export default function productsListReducer(state = initialState, action) {
         loadingCatalog: false,
         errorCatalog: null,
         category: null,
+        selectedCategory: 0,
       };
 
     //Для фильтра блока "Каталог" на страницах "/" и "/catalog.html"
@@ -83,6 +85,7 @@ export default function productsListReducer(state = initialState, action) {
         loadingCatalog: false,
         errorCatalog: null,
         category: action.payload.products[0].category,
+        selectedCategory: action.payload.products[0].category,
         buttonActive: true,
       };
 
