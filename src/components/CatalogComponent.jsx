@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fetchProductsListRequest,
   fetchSearchProductsListRequest,
-} from "./http/actions/actionCreators";
+} from "../redux/productsList/actions/actionsCreators";
 import Loader from "./Loader";
 import ProductCardCatalog from "./ProductCardCatalog";
 import CatalogFilter from "./CatalogFilter";

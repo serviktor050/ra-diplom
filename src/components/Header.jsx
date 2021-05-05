@@ -4,7 +4,7 @@ import Menu from "./Menu";
 import headerLogo from "../img/header-logo.png";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { changeSearchField } from "./http/actions/actionCreators";
+import { changeSearchField } from "../redux/productsList/actions/actionsCreators";
 
 export default function Header() {
   const [searchFieldView, setSearchFieldView] = useState(true);

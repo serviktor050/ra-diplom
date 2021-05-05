@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchCategoriesRequest } from "../redux/categoriesList/actions/actionCreators";
 import {
   fetchProductsListRequest,
   fetchProductsListFilterRequest,
-  fetchCategoriesRequest,
   fetchSearchProductsListFilterRequest,
   fetchAllSearchProductsListFilterRequest,
-} from "./http/actions/actionCreators";
+} from "../redux/productsList/actions/actionsCreators";
 
 export default function CatalogFilter() {
   const { categories /*loadingCategories, errorCategories*/ } = useSelector(

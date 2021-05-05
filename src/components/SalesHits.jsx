@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchSalesHitsRequest } from "./http/actions/actionCreators";
+import { fetchSalesHitsRequest } from "../redux/salesHitsList/actions/actionCreators";
 import Loader from "./Loader";
 import ProductCardSalesHits from "./ProductCardSalesHits";
 
