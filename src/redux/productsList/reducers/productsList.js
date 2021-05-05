@@ -206,6 +206,7 @@ export default function productsListReducer(state = initialState, action) {
         loadingCatalog: false,
         errorCatalog: null,
         category: action.payload.productsSearchFilter[0].category,
+        selectedCategory: action.payload.productsSearchFilter[0].category,
         buttonActive: true,
       };
 
@@ -229,6 +230,7 @@ export default function productsListReducer(state = initialState, action) {
         loadingCatalog: false,
         errorCatalog: null,
         category: null,
+        selectedCategory: 0,
         buttonActive: true,
       };
 
