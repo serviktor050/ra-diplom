@@ -10,6 +10,7 @@ import {
   FETCH_SEARCH_PRODUCTS_LIST_REQUEST,
   FETCH_SEARCH_PRODUCTS_LIST_FILTER_REQUEST,
   FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_REQUEST,
+  FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
 } from "../actions/actionTypes";
 import {
   fetchProductsListFailure,
@@ -26,6 +27,8 @@ import {
   fetchSearchProductsListFilterSuccess,
   fetchAllSearchProductsListFilterFailure,
   fetchAllSearchProductsListFilterSuccess,
+  fetchDownloadMoreSearchResultsFailure,
+  fetchDownloadMoreSearchResultsSuccess,
 } from "../actions/actionsCreators";
 
 //Для блока "Каталог" на страницах "/" и "/catalog.html"
@@ -136,6 +139,23 @@ export const fetchAllSearchProductsListFilterEpic = (action$) =>
         .pipe(
           map((o) => fetchAllSearchProductsListFilterSuccess(o)),
           catchError((e) => of(fetchAllSearchProductsListFilterFailure(e)))
+        )
+    )
+  );
+
+//Для кнопки "Загрузить еще" (для отдельных категорий) на странице "/catalog.html" для результатов поиска
+export const fetchDownloadMoreSearchResultsEpic = (action$) =>
+  action$.pipe(
+    ofType(FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST),
+    map((o) => o.payload),
+    switchMap((o) =>
+      ajax
+        .getJSON(
+          `https://ra-diplom-server.herokuapp.com/api/items?categoryId=${o.id}&q=${o.searchString}&offset=${o.length}`
+        )
+        .pipe(
+          map((o) => fetchDownloadMoreSearchResultsSuccess(o)),
+          catchError((e) => of(fetchDownloadMoreSearchResultsFailure(e)))
         )
     )
   );

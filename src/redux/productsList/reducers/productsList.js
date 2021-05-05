@@ -21,6 +21,9 @@ import {
   FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_REQUEST,
   FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_FAILURE,
   FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS,
+  FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
+  FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE,
+  FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -228,6 +231,42 @@ export default function productsListReducer(state = initialState, action) {
         category: null,
         buttonActive: true,
       };
+
+    //Для кнопки "Загрузить еще" (для отдельных категорий) на странице "/catalog.html" для результатов поиска
+    case FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST:
+      return {
+        ...state,
+        loadingDownloadMore: true,
+        errorDownloadMore: null,
+      };
+    case FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE:
+      return {
+        ...state,
+        loadingDownloadMore: false,
+        errorDownloadMore: action.payload.errorSearchDownload,
+      };
+    case FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS:
+      const { productsSearchDownload } = action.payload;
+      if (
+        productsSearchDownload.length < 6 ||
+        productsSearchDownload.length === 0
+      ) {
+        return {
+          ...state,
+          products: [...state.products, ...productsSearchDownload],
+          loadingDownloadMore: false,
+          errorDownloadMore: null,
+          buttonActive: false,
+        };
+      } else {
+        return {
+          ...state,
+          products: [...state.products, ...productsSearchDownload],
+          loadingDownloadMore: false,
+          errorDownloadMore: null,
+          buttonActive: true,
+        };
+      }
     default:
       return state;
   }
