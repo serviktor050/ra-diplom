@@ -15,6 +15,7 @@ import {
   fetchSearchProductsListFilterEpic,
   fetchAllSearchProductsListFilterEpic,
   fetchDownloadMoreSearchResultsEpic,
+  fetchAllDownloadMoreSearchResultsEpic,
 } from "../productsList/epics/index";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -35,7 +36,8 @@ const epic = combineEpics(
   fetchSearchProductsListEpic,
   fetchSearchProductsListFilterEpic,
   fetchAllSearchProductsListFilterEpic,
-  fetchDownloadMoreSearchResultsEpic
+  fetchDownloadMoreSearchResultsEpic,
+  fetchAllDownloadMoreSearchResultsEpic
 );
 
 const epicMiddleware = createEpicMiddleware();

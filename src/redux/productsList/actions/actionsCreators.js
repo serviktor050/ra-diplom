@@ -24,6 +24,9 @@ import {
   FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
   FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE,
   FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS,
+  FETCH_ALL_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
+  FETCH_ALL_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE,
+  FETCH_ALL_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS,
 } from "./actionTypes";
 
 //Для блока "Каталог" на страницах "/" и "/catalog.html"
@@ -112,6 +115,7 @@ export const fetchDownloadMoreAllSuccess = (productsDownloadAll) => ({
   },
 });
 
+//Для работы поиска
 export const changeSearchField = (search) => ({
   type: CHANGE_SEARCH_FIELD,
   payload: {
@@ -219,5 +223,35 @@ export const fetchDownloadMoreSearchResultsSuccess = (
   type: FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS,
   payload: {
     productsSearchDownload,
+  },
+});
+
+//Для кнопки "Загрузить еще" (для всех категорий) на странице "/catalog.html" для результатов поиска
+export const fetchAllDownloadMoreSearchResultsRequest = (
+  length,
+  searchString
+) => ({
+  type: FETCH_ALL_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
+  payload: {
+    length,
+    searchString,
+  },
+});
+
+export const fetchAllDownloadMoreSearchResultsFailure = (
+  errorSearchDownloadAll
+) => ({
+  type: FETCH_ALL_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE,
+  payload: {
+    errorSearchDownloadAll,
+  },
+});
+
+export const fetchAllDownloadMoreSearchResultsSuccess = (
+  productsSearchDownloadAll
+) => ({
+  type: FETCH_ALL_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS,
+  payload: {
+    productsSearchDownloadAll,
   },
 });

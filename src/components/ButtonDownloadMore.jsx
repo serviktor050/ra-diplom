@@ -4,6 +4,7 @@ import {
   fetchDownloadMoreRequest,
   fetchDownloadMoreAllRequest,
   fetchDownloadMoreSearchResultsRequest,
+  fetchAllDownloadMoreSearchResultsRequest,
 } from "../redux/productsList/actions/actionsCreators";
 
 export default function ButtonDownloadMore() {
@@ -24,8 +25,14 @@ export default function ButtonDownloadMore() {
       dispatch(fetchDownloadMoreSearchResultsRequest(id, length, searchString));
     } else if (id !== null) {
       dispatch(fetchDownloadMoreRequest(id, length));
-    } else {
-      dispatch(fetchDownloadMoreAllRequest(length));
+    } else if (id === null) {
+      if (searchString !== "") {
+        dispatch(
+          fetchAllDownloadMoreSearchResultsRequest(length, searchString)
+        );
+      } else {
+        dispatch(fetchDownloadMoreAllRequest(length));
+      }
     }
   };
 

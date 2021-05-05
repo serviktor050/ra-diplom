@@ -24,6 +24,9 @@ import {
   FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
   FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE,
   FETCH_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS,
+  FETCH_ALL_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST,
+  FETCH_ALL_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE,
+  FETCH_ALL_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -264,6 +267,42 @@ export default function productsListReducer(state = initialState, action) {
         return {
           ...state,
           products: [...state.products, ...productsSearchDownload],
+          loadingDownloadMore: false,
+          errorDownloadMore: null,
+          buttonActive: true,
+        };
+      }
+
+    //Для кнопки "Загрузить еще" (для всех категорий) на странице "/catalog.html" для результатов поиска
+    case FETCH_ALL_DOWNLOAD_MORE_SEARCH_RESULTS_REQUEST:
+      return {
+        ...state,
+        loadingDownloadMore: true,
+        errorDownloadMore: null,
+      };
+    case FETCH_ALL_DOWNLOAD_MORE_SEARCH_RESULTS_FAILURE:
+      return {
+        ...state,
+        loadingDownloadMore: false,
+        errorDownloadMore: action.payload.errorSearchDownloadAll,
+      };
+    case FETCH_ALL_DOWNLOAD_MORE_SEARCH_RESULTS_SUCCESS:
+      const { productsSearchDownloadAll } = action.payload;
+      if (
+        productsSearchDownloadAll.length < 6 ||
+        productsSearchDownloadAll.length === 0
+      ) {
+        return {
+          ...state,
+          products: [...state.products, ...productsSearchDownloadAll],
+          loadingDownloadMore: false,
+          errorDownloadMore: null,
+          buttonActive: false,
+        };
+      } else {
+        return {
+          ...state,
+          products: [...state.products, ...productsSearchDownloadAll],
           loadingDownloadMore: false,
           errorDownloadMore: null,
           buttonActive: true,
