@@ -3,8 +3,10 @@ import { combineEpics, createEpicMiddleware } from "redux-observable";
 import salesHitsListReducer from "../salesHitsList/reducers/salesHitsList";
 import productsListReducer from "../productsList/reducers/productsList";
 import categoriesListReducer from "../categoriesList/reducers/categoriesList";
+import productCardReducer from "../productCard/reducers/productCard";
 import { fetchCategoriesEpic } from "../categoriesList/epics/index";
 import { fetchSalesHitsEpic } from "../salesHitsList/epics/index";
+import { fetchProductCardEpic } from "../productCard/epics/index";
 
 import {
   fetchProductsListEpic,
@@ -24,6 +26,7 @@ const reducer = combineReducers({
   salesHitsList: salesHitsListReducer,
   productsList: productsListReducer,
   categoriesList: categoriesListReducer,
+  productCard: productCardReducer,
 });
 
 const epic = combineEpics(
@@ -37,7 +40,8 @@ const epic = combineEpics(
   fetchSearchProductsListFilterEpic,
   fetchAllSearchProductsListFilterEpic,
   fetchDownloadMoreSearchResultsEpic,
-  fetchAllDownloadMoreSearchResultsEpic
+  fetchAllDownloadMoreSearchResultsEpic,
+  fetchProductCardEpic
 );
 
 const epicMiddleware = createEpicMiddleware();
