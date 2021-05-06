@@ -10,7 +10,7 @@ export default function ProductCardSalesHits(props) {
         <div className="card-body">
           <p className="card-text">{title}</p>
           <p className="card-text">{price} руб.</p>
-          <Link to={`/products/${id}.html`} className="btn btn-outline-primary">
+          <Link to={`/catalog/${id}.html`} className="btn btn-outline-primary">
             Заказать
           </Link>
         </div>

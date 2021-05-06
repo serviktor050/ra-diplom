@@ -8,12 +8,14 @@ import Cart from "./components/Pages/Cart";
 import Page404 from "./components/Pages/Page404";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Product from "./components/Pages/Product";
 
 function App() {
   return (
     <Router>
       <Header />
       <Switch>
+        <Route path="/catalog/:id.html" component={Product} />
         <Route path="/cart.html" component={Cart} />
         <Route path="/contacts.html" component={Contacts} />
         <Route path="/about.html" component={About} />
