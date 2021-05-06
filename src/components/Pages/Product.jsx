@@ -5,9 +5,6 @@ import { fetchProductCardRequest } from "../../redux/productCard/actions/actions
 import Loader from "../Loader";
 
 export default function Product(props) {
-  const { items, errorCard, loadingCard } = useSelector(
-    (state) => state.productCard
-  );
   let id = Number(props.match.params.id);
 
   const dispatch = useDispatch();
@@ -15,6 +12,10 @@ export default function Product(props) {
   useEffect(() => {
     dispatch(fetchProductCardRequest(id));
   }, []);
+
+  const { items, errorCard, loadingCard } = useSelector(
+    (state) => state.productCard
+  );
 
   return (
     <>
