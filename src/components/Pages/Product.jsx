@@ -20,7 +20,7 @@ export default function Product(props) {
   return (
     <>
       {loadingCard && <Loader />}
-      {!loadingCard && !errorCard && (
+      {!loadingCard && !errorCard && items.length !== 0 && (
         <main className="container">
           <div className="row">
             <div className="col">
@@ -67,9 +67,10 @@ export default function Product(props) {
                     <div className="text-center">
                       <p>
                         Размеры в наличии:
-                        <span className="catalog-item-size selected">
-                          18 US
-                        </span>
+                        {/* {items.sizes.map((o) => {
+                          console.log(o);
+                        })} */}
+                        <span className="catalog-item-size">18 US</span>
                         <span className="catalog-item-size">20 US</span>
                       </p>
                       <p>
