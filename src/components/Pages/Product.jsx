@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "../Banner";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProductCardRequest } from "../../redux/productCard/actions/actionsCreators";
 import Loader from "../Loader";
+import { Link } from "react-router-dom";
 
 export default function Product(props) {
   let id = Number(props.match.params.id);
@@ -16,6 +17,34 @@ export default function Product(props) {
   const { items, errorCard, loadingCard } = useSelector(
     (state) => state.productCard
   );
+
+  //Выбор размера
+  const [selectedSize, setSelectedSize] = useState("");
+
+  const handleSize = (size) => {
+    setSelectedSize(size);
+  };
+
+  //Выбор количества
+  const [quantity, setQuantity] = useState(1);
+
+  const reduceQuantity = (quantity) => {
+    if (quantity > 1) {
+      quantity -= 1;
+      setQuantity(quantity);
+    } else {
+      return;
+    }
+  };
+
+  const increaseQuantity = (quantity) => {
+    if (quantity < 10) {
+      quantity += 1;
+      setQuantity(quantity);
+    } else {
+      return;
+    }
+  };
 
   return (
     <>
@@ -67,24 +96,60 @@ export default function Product(props) {
                     <div className="text-center">
                       <p>
                         Размеры в наличии:
-                        {/* {items.sizes.map((o) => {
-                          console.log(o);
-                        })} */}
-                        <span className="catalog-item-size">18 US</span>
-                        <span className="catalog-item-size">20 US</span>
+                        {items.sizes
+                          .filter((o) => {
+                            return o.avalible === true;
+                          })
+                          .map((o) => {
+                            const isActive = o.size === selectedSize;
+                            return (
+                              <span
+                                className={`catalog-item-size ${
+                                  isActive ? "selected" : ""
+                                }`}
+                                onClick={() => {
+                                  handleSize(o.size);
+                                }}
+                              >
+                                {o.size}
+                              </span>
+                            );
+                          })}
                       </p>
-                      <p>
-                        Количество:
-                        <span className="btn-group btn-group-sm pl-2">
-                          <button className="btn btn-secondary">-</button>
-                          <span className="btn btn-outline-primary">1</span>
-                          <button className="btn btn-secondary">+</button>
-                        </span>
-                      </p>
+                      {items.sizes !== 0 && (
+                        <p>
+                          Количество:
+                          <span className="btn-group btn-group-sm pl-2">
+                            <button
+                              className="btn btn-secondary"
+                              onClick={() => {
+                                reduceQuantity(quantity);
+                              }}
+                            >
+                              -
+                            </button>
+                            <span className="btn btn-outline-primary">
+                              {quantity}
+                            </span>
+                            <button
+                              className="btn btn-secondary"
+                              onClick={() => {
+                                increaseQuantity(quantity);
+                              }}
+                            >
+                              +
+                            </button>
+                          </span>
+                        </p>
+                      )}
                     </div>
-                    <button className="btn btn-danger btn-block btn-lg">
-                      В корзину
-                    </button>
+                    {items.sizes !== 0 && selectedSize !== "" && (
+                      <Link to="/cart.html">
+                        <button className="btn btn-danger btn-block btn-lg">
+                          В корзину
+                        </button>
+                      </Link>
+                    )}
                   </div>
                 </div>
               </section>
