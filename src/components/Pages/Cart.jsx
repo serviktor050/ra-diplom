@@ -2,6 +2,11 @@ import React from "react";
 import Banner from "../Banner";
 
 export default function Cart() {
+  const productsList = JSON.parse(localStorage.getItem("productList"));
+  const totalPrice = productsList.reduce((sum, product) => {
+    return sum + product.price * product.quantity;
+  }, 0);
+
   return (
     <main className="container">
       <div className="row">
@@ -9,49 +14,58 @@ export default function Cart() {
           <Banner />
           <section className="cart">
             <h2 className="text-center">Корзина</h2>
-            <table className="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Название</th>
-                  <th scope="col">Размер</th>
-                  <th scope="col">Кол-во</th>
-                  <th scope="col">Стоимость</th>
-                  <th scope="col">Итого</th>
-                  <th scope="col">Действия</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>
-                    <a href="/products/1.html">Босоножки 'MYER'</a>
-                  </td>
-                  <td>18 US</td>
-                  <td>1</td>
-                  <td>34 000 руб.</td>
-                  <td>34 000 руб.</td>
-                  <td>
-                    <button className="btn btn-outline-danger btn-sm">
-                      Удалить
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="5" className="text-right">
-                    Общая стоимость
-                  </td>
-                  <td>34 000 руб.</td>
-                </tr>
-              </tbody>
-            </table>
+            {productsList.length !== 0 && (
+              <table className="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Размер</th>
+                    <th scope="col">Кол-во</th>
+                    <th scope="col">Стоимость</th>
+                    <th scope="col">Итого</th>
+                    <th scope="col">Действия</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {productsList.map((product, index) => {
+                    return (
+                      <tr>
+                        <th scope="row">{(index += 1)}</th>
+                        <td>
+                          <a href={`/products/${product.id}.html`}>
+                            {product.title}
+                          </a>
+                        </td>
+                        <td>{product.size}</td>
+                        <td>{product.quantity}</td>
+                        <td>{product.price} руб.</td>
+                        <td>{product.price * product.quantity} руб.</td>
+                        <td>
+                          <button className="btn btn-outline-danger btn-sm">
+                            Удалить
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+
+                  <tr>
+                    <td colSpan="5" className="text-right">
+                      Общая стоимость
+                    </td>
+                    <td>{totalPrice} руб.</td>
+                  </tr>
+                </tbody>
+              </table>
+            )}
           </section>
           <section className="order">
             <h2 className="text-center">Оформить заказ</h2>
-            <div className="card" maxWidth="30 rem" margin="0 auto">
+            <div className="card" maxwidth="30 rem" margin="0 auto">
               <form className="card-body">
                 <div className="form-group">
-                  <label for="phone">Телефон</label>
+                  <label htmlFor="phone">Телефон</label>
                   <input
                     className="form-control"
                     id="phone"
@@ -59,7 +73,7 @@ export default function Cart() {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="address">Адрес доставки</label>
+                  <label htmlFor="address">Адрес доставки</label>
                   <input
                     className="form-control"
                     id="address"
@@ -72,7 +86,7 @@ export default function Cart() {
                     className="form-check-input"
                     id="agreement"
                   />
-                  <label className="form-check-label" for="agreement">
+                  <label className="form-check-label" htmlFor="agreement">
                     Согласен с правилами доставки
                   </label>
                 </div>

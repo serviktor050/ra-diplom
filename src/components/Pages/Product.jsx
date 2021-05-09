@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchProductCardRequest } from "../../redux/productCard/actions/actionsCreators";
 import Loader from "../Loader";
 import { Link } from "react-router-dom";
+import cartStorage from "../../utils/cartStorage";
 
 export default function Product(props) {
   let id = Number(props.match.params.id);
@@ -44,6 +45,18 @@ export default function Product(props) {
     } else {
       return;
     }
+  };
+
+  //Добавление товара в корзину
+  const addProduct = () => {
+    let product = {
+      id: items.id,
+      title: items.title,
+      size: selectedSize,
+      price: items.price,
+      quantity: quantity,
+    };
+    cartStorage(product);
   };
 
   return (
@@ -145,7 +158,10 @@ export default function Product(props) {
                     </div>
                     {items.sizes !== 0 && selectedSize !== "" && (
                       <Link to="/cart.html">
-                        <button className="btn btn-danger btn-block btn-lg">
+                        <button
+                          className="btn btn-danger btn-block btn-lg"
+                          onClick={addProduct}
+                        >
                           В корзину
                         </button>
                       </Link>
