@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { changeSearchField } from "../redux/productsList/actions/actionsCreators";
 
 export default function Header() {
+  const productsInCart = JSON.parse(localStorage.getItem("productList"));
+
   const [searchFieldView, setSearchFieldView] = useState(true);
   const [searchFieldInput, setSearchFieldInput] = useState("");
 
@@ -61,11 +63,18 @@ export default function Header() {
                       </Link>
                     </>
                   )}
-
-                  <div className="header-controls-pic header-controls-cart">
-                    <div className="header-controls-cart-full">1</div>
-                    <div className="header-controls-cart-menu"></div>
-                  </div>
+                  <Link to="/cart.html">
+                    <div className="header-controls-pic header-controls-cart">
+                      {productsInCart.length !== 0 && (
+                        <div className="header-controls-cart-full">
+                          {productsInCart.length}
+                        </div>
+                      )}
+                      {productsInCart.length === 0 && (
+                        <div className="header-controls-cart-menu"></div>
+                      )}
+                    </div>
+                  </Link>
                 </div>
                 <form
                   data-id="search-form"
