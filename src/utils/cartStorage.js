@@ -16,6 +16,7 @@ export default function cartStorage(product) {
   }
 
   localStorage.setItem("productList", JSON.stringify(productsList));
+  localStorage.removeItem("product");
   return productsList;
 }
 
