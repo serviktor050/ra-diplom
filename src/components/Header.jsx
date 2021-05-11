@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import Menu from "./Menu";
 import headerLogo from "../img/header-logo.png";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { changeSearchField } from "../redux/productsList/actions/actionsCreators";
 
 export default function Header() {
-  const productsInCart = JSON.parse(localStorage.getItem("productList"));
+  const { productsList } = useSelector((state) => state.cartList);
 
   const [searchFieldView, setSearchFieldView] = useState(true);
   const [searchFieldInput, setSearchFieldInput] = useState("");
@@ -65,12 +65,12 @@ export default function Header() {
                   )}
                   <Link to="/cart.html">
                     <div className="header-controls-pic header-controls-cart">
-                      {productsInCart.length !== 0 && (
+                      {productsList && productsList.length !== 0 && (
                         <div className="header-controls-cart-full">
-                          {productsInCart.length}
+                          {productsList.length}
                         </div>
                       )}
-                      {productsInCart.length === 0 && (
+                      {productsList === null && (
                         <div className="header-controls-cart-menu"></div>
                       )}
                     </div>
