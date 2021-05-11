@@ -5,7 +5,7 @@ export default function cartStorage(product) {
   const productObj = JSON.parse(localStorage.getItem("product"));
 
   let finedProduct = productsList.find((item) => {
-    return item.id === productObj.id;
+    return item.id === productObj.id && item.size === productObj.size;
   });
 
   if (finedProduct !== undefined) {

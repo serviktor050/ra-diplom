@@ -1,7 +1,7 @@
 import {
   ADD_PRODUCTS_IN_CART,
   REMOVE_PRODUCT_IN_CART,
-} from "../actions/actionsType";
+} from "../actions/actionsTypes";
 
 const initialState = {
   productList: [],
@@ -15,10 +15,12 @@ export default function cartListReducer(state = initialState, action) {
         productsList: action.payload.products,
       };
     case REMOVE_PRODUCT_IN_CART:
-      const { id } = action.payload;
+      const { testString } = action.payload;
       return {
         ...state,
-        productsList: state.productsList.filter((o) => o.id !== id),
+        productsList: state.productsList.filter((product) => {
+          return `${product.id}${product.size}` !== testString;
+        }),
       };
     default:
       return state;

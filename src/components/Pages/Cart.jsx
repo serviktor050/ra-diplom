@@ -8,6 +8,8 @@ import {
 } from "../../redux/cartList/actions/actionsCreators";
 
 export default function Cart() {
+  console.log(getProductsList());
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(addProductInCart(getProductsList()));
@@ -62,7 +64,11 @@ export default function Cart() {
                             className="btn btn-outline-danger btn-sm"
                             onClick={() => {
                               removeProduct(`${product.id}${product.size}`);
-                              dispatch(removeProductInCart(product.id));
+                              dispatch(
+                                removeProductInCart(
+                                  `${product.id}${product.size}`
+                                )
+                              );
                             }}
                           >
                             Удалить
