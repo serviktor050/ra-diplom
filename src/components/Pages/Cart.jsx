@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Banner from "../Banner";
+import { removeProduct, getProductsList } from "../../utils/cartStorage";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addProductInCart,
+  removeProductInCart,
+} from "../../redux/cartList/actions/actionsCreators";
 
 export default function Cart() {
-  const productsList = JSON.parse(localStorage.getItem("productList"));
-  const totalPrice = productsList.reduce((sum, product) => {
-    return sum + product.price * product.quantity;
-  }, 0);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(addProductInCart(getProductsList()));
+  }, []);
+
+  const { productsList } = useSelector((state) => state.cartList);
+
+  let totalPrice;
+
+  if (productsList) {
+    totalPrice = productsList.reduce((sum, product) => {
+      return sum + product.price * product.quantity;
+    }, 0);
+  }
 
   return (
     <main className="container">
@@ -14,7 +30,7 @@ export default function Cart() {
           <Banner />
           <section className="cart">
             <h2 className="text-center">Корзина</h2>
-            {productsList.length !== 0 && (
+            {productsList && productsList.length !== 0 && (
               <table className="table table-bordered">
                 <thead>
                   <tr>
@@ -42,7 +58,13 @@ export default function Cart() {
                         <td>{product.price} руб.</td>
                         <td>{product.price * product.quantity} руб.</td>
                         <td>
-                          <button className="btn btn-outline-danger btn-sm">
+                          <button
+                            className="btn btn-outline-danger btn-sm"
+                            onClick={() => {
+                              removeProduct(`${product.id}${product.size}`);
+                              dispatch(removeProductInCart(product.id));
+                            }}
+                          >
                             Удалить
                           </button>
                         </td>
@@ -54,7 +76,7 @@ export default function Cart() {
                     <td colSpan="5" className="text-right">
                       Общая стоимость
                     </td>
-                    <td>{totalPrice} руб.</td>
+                    {totalPrice !== undefined && <td>{totalPrice} руб.</td>}
                   </tr>
                 </tbody>
               </table>

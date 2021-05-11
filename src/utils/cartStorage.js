@@ -16,4 +16,18 @@ export default function cartStorage(product) {
   }
 
   localStorage.setItem("productList", JSON.stringify(productsList));
+  return productsList;
+}
+
+export function removeProduct(testString) {
+  let productsListBefore = JSON.parse(localStorage.getItem("productList"));
+  let productsListAfter = productsListBefore.filter((product) => {
+    return `${product.id}${product.size}` !== testString;
+  });
+  localStorage.setItem("productList", JSON.stringify(productsListAfter));
+  return productsList;
+}
+
+export function getProductsList() {
+  return JSON.parse(localStorage.getItem("productList"));
 }
