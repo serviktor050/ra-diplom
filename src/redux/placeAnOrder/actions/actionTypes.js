@@ -1,0 +1,4 @@
+//Для отправки формы заказа
+export const PLACE_AN_ORDER_REQUEST = "PLACE_AN_ORDER_REQUEST";
+export const PLACE_AN_ORDER_FAILURE = "PLACE_AN_ORDER_FAILURE";
+export const PLACE_AN_ORDER_SUCCESS = "PLACE_AN_ORDER_SUCCESS";

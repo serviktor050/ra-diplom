@@ -5,9 +5,11 @@ import productsListReducer from "../productsList/reducers/productsList";
 import categoriesListReducer from "../categoriesList/reducers/categoriesList";
 import productCardReducer from "../productCard/reducers/productCard";
 import cartListReducer from "../cartList/reducers/cartList";
+import placeAnOrderReducer from "../placeAnOrder/reducers/placeAnOrder";
 import { fetchCategoriesEpic } from "../categoriesList/epics/index";
 import { fetchSalesHitsEpic } from "../salesHitsList/epics/index";
 import { fetchProductCardEpic } from "../productCard/epics/index";
+import { placeAnOrderEpic } from "../placeAnOrder/epics/index";
 
 import {
   fetchProductsListEpic,
@@ -29,6 +31,7 @@ const reducer = combineReducers({
   categoriesList: categoriesListReducer,
   productCard: productCardReducer,
   cartList: cartListReducer,
+  placeAnOrder: placeAnOrderReducer,
 });
 
 const epic = combineEpics(
@@ -43,7 +46,8 @@ const epic = combineEpics(
   fetchAllSearchProductsListFilterEpic,
   fetchDownloadMoreSearchResultsEpic,
   fetchAllDownloadMoreSearchResultsEpic,
-  fetchProductCardEpic
+  fetchProductCardEpic,
+  placeAnOrderEpic
 );
 
 const epicMiddleware = createEpicMiddleware();
