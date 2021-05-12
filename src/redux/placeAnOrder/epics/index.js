@@ -14,7 +14,6 @@ export const placeAnOrderEpic = (action$) =>
     ofType(PLACE_AN_ORDER_REQUEST),
     map((o) => o.payload.form),
     switchMap((form) => {
-      console.log(form);
       return ajax({
         url: "https://ra-diplom-server.herokuapp.com/api/order",
         method: "POST",

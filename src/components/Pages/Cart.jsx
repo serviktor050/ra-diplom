@@ -32,6 +32,9 @@ export default function Cart() {
           <Banner />
           <section className="cart">
             <h2 className="text-center">Корзина</h2>
+            {productsList && productsList.length === 0 && (
+              <p>Ваша корзина пуста... 🙄</p>
+            )}
             {productsList === null && <p>Ваша корзина пуста... 🙄</p>}
             {productsList && productsList.length !== 0 && (
               <table className="table table-bordered">

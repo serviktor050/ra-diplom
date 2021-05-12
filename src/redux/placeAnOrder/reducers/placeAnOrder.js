@@ -28,7 +28,6 @@ export default function placeAnOrderReducer(state = initialState, action) {
         error: action.payload.error,
       };
     case PLACE_AN_ORDER_SUCCESS:
-      console.log(action.payload.status);
       return {
         ...state,
         response: action.payload.status,
