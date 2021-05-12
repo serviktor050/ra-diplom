@@ -6,6 +6,8 @@ import {
 } from "../redux/placeAnOrder/actions/actionCreators";
 import Loader from "./Loader";
 import { Link } from "react-router-dom";
+import { deleteProductsFromCartAfterOrder } from "../redux/cartList/actions/actionsCreators";
+import { clearCart } from "../utils/cartStorage";
 
 export default function PlaceAnOrder() {
   const { productsList } = useSelector((state) => state.cartList);
@@ -46,6 +48,8 @@ export default function PlaceAnOrder() {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     sendForm();
+    dispatch(deleteProductsFromCartAfterOrder());
+    clearCart();
   };
 
   return (

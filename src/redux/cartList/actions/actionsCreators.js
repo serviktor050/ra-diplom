@@ -1,4 +1,8 @@
-import { ADD_PRODUCTS_IN_CART, REMOVE_PRODUCT_IN_CART } from "./actionsTypes";
+import {
+  ADD_PRODUCTS_IN_CART,
+  REMOVE_PRODUCT_IN_CART,
+  DELETE_PRODUCTS_FROM_CART_AFTER_ORDER,
+} from "./actionsTypes";
 
 //Для отображения товаров в корзине
 export const addProductInCart = (products) => ({
@@ -13,4 +17,8 @@ export const removeProductInCart = (testString) => ({
   payload: {
     testString,
   },
+});
+
+export const deleteProductsFromCartAfterOrder = () => ({
+  type: DELETE_PRODUCTS_FROM_CART_AFTER_ORDER,
 });

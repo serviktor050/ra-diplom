@@ -29,6 +29,10 @@ export function removeProduct(testString) {
   return productsList;
 }
 
+export function clearCart() {
+  localStorage.clear();
+}
+
 export function getProductsList() {
   return JSON.parse(localStorage.getItem("productList"));
 }

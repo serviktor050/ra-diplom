@@ -9,9 +9,8 @@ import {
 import PlaceAnOrder from "../PlaceAnOrder";
 
 export default function Cart() {
-  console.log(getProductsList());
-
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(addProductInCart(getProductsList()));
   }, []);
@@ -33,6 +32,7 @@ export default function Cart() {
           <Banner />
           <section className="cart">
             <h2 className="text-center">Корзина</h2>
+            {productsList === null && <p>Ваша корзина пуста... 🙄</p>}
             {productsList && productsList.length !== 0 && (
               <table className="table table-bordered">
                 <thead>

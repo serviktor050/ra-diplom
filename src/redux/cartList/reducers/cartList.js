@@ -1,6 +1,7 @@
 import {
   ADD_PRODUCTS_IN_CART,
   REMOVE_PRODUCT_IN_CART,
+  DELETE_PRODUCTS_FROM_CART_AFTER_ORDER,
 } from "../actions/actionsTypes";
 
 const initialState = {
@@ -10,7 +11,6 @@ const initialState = {
 export default function cartListReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_PRODUCTS_IN_CART:
-      console.log(action.payload.products);
       return {
         productsList: action.payload.products,
       };
@@ -22,6 +22,8 @@ export default function cartListReducer(state = initialState, action) {
           return `${product.id}${product.size}` !== testString;
         }),
       };
+    case DELETE_PRODUCTS_FROM_CART_AFTER_ORDER:
+      return { ...initialState };
     default:
       return state;
   }
