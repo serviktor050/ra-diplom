@@ -10,7 +10,7 @@ export default function SalesHits() {
 
   useEffect(() => {
     dispatch(fetchSalesHitsRequest());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

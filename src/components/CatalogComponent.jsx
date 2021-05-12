@@ -21,7 +21,7 @@ export default function CatalogComponent() {
     } else {
       dispatch(fetchProductsListRequest());
     }
-  }, []);
+  }, [dispatch, search]);
 
   return (
     <>

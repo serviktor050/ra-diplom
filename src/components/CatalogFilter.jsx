@@ -10,9 +10,7 @@ import {
 } from "../redux/productsList/actions/actionsCreators";
 
 export default function CatalogFilter() {
-  const { categories /*loadingCategories, errorCategories*/ } = useSelector(
-    (state) => state.categoriesList
-  );
+  const { categories } = useSelector((state) => state.categoriesList);
 
   const { search, selectedCategory } = useSelector(
     (state) => state.productsList
@@ -25,7 +23,7 @@ export default function CatalogFilter() {
 
   useEffect(() => {
     dispatch(fetchCategoriesRequest());
-  }, []);
+  }, [dispatch]);
 
   const downloadAllProducts = () => {
     if (searchRequest !== "") {

@@ -13,7 +13,7 @@ export default function Product(props) {
 
   useEffect(() => {
     dispatch(fetchProductCardRequest(id));
-  }, []);
+  }, [dispatch, id]);
 
   const { items, errorCard, loadingCard } = useSelector(
     (state) => state.productCard

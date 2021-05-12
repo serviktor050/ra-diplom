@@ -20,7 +20,7 @@ export default function PlaceAnOrder() {
 
   useEffect(() => {
     dispatch(placeAnOrderInitialState());
-  }, []);
+  }, [dispatch]);
 
   const [formField, setFormField] = useState({ phone: "", address: "" });
 

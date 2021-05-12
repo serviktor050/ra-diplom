@@ -13,7 +13,7 @@ export default function Cart() {
 
   useEffect(() => {
     dispatch(addProductInCart(getProductsList()));
-  }, []);
+  }, [dispatch]);
 
   const { productsList } = useSelector((state) => state.cartList);
 
@@ -55,7 +55,7 @@ export default function Cart() {
                       <tr>
                         <th scope="row">{(index += 1)}</th>
                         <td>
-                          <a href={`/products/${product.id}.html`}>
+                          <a href={`/catalog/${product.id}.html`}>
                             {product.title}
                           </a>
                         </td>
