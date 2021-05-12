@@ -18,6 +18,21 @@ export default function SalesHits() {
         <h2 className="text-center">Хиты продаж!</h2>
         <div className="row">
           {loading && <Loader />}
+          {!loading && error && (
+            <div>
+              <p>
+                Произошла ошибка при загрузке данных. Вы можете повторить
+                запрос.
+              </p>
+              <button
+                onClick={() => {
+                  dispatch(fetchSalesHitsRequest());
+                }}
+              >
+                Повторить запрос
+              </button>
+            </div>
+          )}
           {!loading && !error && (
             <>
               {items.map((item) => {
