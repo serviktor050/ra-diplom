@@ -2,6 +2,7 @@ import {
   PLACE_AN_ORDER_REQUEST,
   PLACE_AN_ORDER_FAILURE,
   PLACE_AN_ORDER_SUCCESS,
+  PLACE_AN_ORDER_INITIAL_STATE,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -34,6 +35,8 @@ export default function placeAnOrderReducer(state = initialState, action) {
         loading: false,
         error: null,
       };
+    case PLACE_AN_ORDER_INITIAL_STATE:
+      return { ...initialState };
     default:
       return state;
   }

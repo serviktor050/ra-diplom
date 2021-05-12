@@ -2,6 +2,7 @@ import {
   PLACE_AN_ORDER_REQUEST,
   PLACE_AN_ORDER_FAILURE,
   PLACE_AN_ORDER_SUCCESS,
+  PLACE_AN_ORDER_INITIAL_STATE,
 } from "./actionTypes";
 
 //Для отправки формы заказа
@@ -19,12 +20,13 @@ export const placeAnOrderFailure = (error) => ({
   },
 });
 
-export const placeAnOrderSuccess = (status) => {
-  console.log(status);
-  return {
-    type: PLACE_AN_ORDER_SUCCESS,
-    payload: {
-      status,
-    },
-  };
-};
+export const placeAnOrderSuccess = (status) => ({
+  type: PLACE_AN_ORDER_SUCCESS,
+  payload: {
+    status,
+  },
+});
+
+export const placeAnOrderInitialState = () => ({
+  type: PLACE_AN_ORDER_INITIAL_STATE,
+});
