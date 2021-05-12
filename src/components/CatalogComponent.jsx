@@ -10,13 +10,8 @@ import CatalogFilter from "./CatalogFilter";
 import ButtonDownloadMore from "./ButtonDownloadMore";
 
 export default function CatalogComponent() {
-  const {
-    products,
-    loadingCatalog,
-    errorCatalog,
-    buttonActive,
-    search,
-  } = useSelector((state) => state.productsList);
+  const { products, loadingCatalog, errorCatalog, buttonActive, search } =
+    useSelector((state) => state.productsList);
 
   const dispatch = useDispatch();
 
@@ -31,6 +26,34 @@ export default function CatalogComponent() {
   return (
     <>
       {loadingCatalog && <Loader />}
+      {!loadingCatalog && errorCatalog && search !== "" && (
+        <div>
+          <p>
+            Произошла ошибка при загрузке данных. Вы можете повторить запрос.
+          </p>
+          <button
+            onClick={() => {
+              dispatch(fetchSearchProductsListRequest(search));
+            }}
+          >
+            Повторить запрос
+          </button>
+        </div>
+      )}
+      {!loadingCatalog && errorCatalog && search === "" && (
+        <div>
+          <p>
+            Произошла ошибка при загрузке данных. Вы можете повторить запрос.
+          </p>
+          <button
+            onClick={() => {
+              dispatch(fetchProductsListRequest());
+            }}
+          >
+            Повторить запрос
+          </button>
+        </div>
+      )}
       {!loadingCatalog && !errorCatalog && (
         <>
           <CatalogFilter />
