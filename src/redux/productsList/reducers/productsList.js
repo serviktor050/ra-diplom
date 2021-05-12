@@ -203,15 +203,27 @@ export default function productsListReducer(state = initialState, action) {
         errorCatalog: action.payload.errorSearchFilterCatalog,
       };
     case FETCH_SEARCH_PRODUCTS_LIST_FILTER_SUCCESS:
-      return {
-        ...state,
-        products: action.payload.productsSearchFilter,
-        loadingCatalog: false,
-        errorCatalog: null,
-        category: action.payload.productsSearchFilter[0].category,
-        selectedCategory: action.payload.productsSearchFilter[0].category,
-        buttonActive: true,
-      };
+      if (action.payload.productsSearchFilter[0]) {
+        return {
+          ...state,
+          products: action.payload.productsSearchFilter,
+          loadingCatalog: false,
+          errorCatalog: null,
+          category: action.payload.productsSearchFilter[0].category,
+          selectedCategory: action.payload.productsSearchFilter[0].category,
+          buttonActive: true,
+        };
+      } else {
+        return {
+          ...state,
+          products: action.payload.productsSearchFilter,
+          loadingCatalog: false,
+          errorCatalog: null,
+          category: null,
+          selectedCategory: null,
+          buttonActive: false,
+        };
+      }
 
     //Для фильтра блока "Каталог" на страницах "/" и "/catalog.html"
     case FETCH_ALL_SEARCH_PRODUCTS_LIST_FILTER_REQUEST:
