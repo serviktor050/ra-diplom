@@ -24,7 +24,6 @@ export default function Header() {
 
   const handleSearch = (evt) => {
     setSearchFieldInput(evt.target.value);
-    dispatch(changeSearchField(evt.target.value));
   };
 
   return (
@@ -57,6 +56,8 @@ export default function Header() {
                           data-id="search-expander"
                           className="header-controls-pic header-controls-search"
                           onClick={() => {
+                            dispatch(changeSearchField(searchFieldInput));
+                            setSearchFieldInput("");
                             handleClickSearchFieldView();
                           }}
                         ></div>
@@ -86,6 +87,7 @@ export default function Header() {
                     className="form-control"
                     placeholder="Поиск"
                     onChange={handleSearch}
+                    value={searchFieldInput}
                   />
                 </form>
               </div>

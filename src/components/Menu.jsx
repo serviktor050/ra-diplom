@@ -1,11 +1,22 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { changeSearchField } from "../redux/productsList/actions/actionsCreators";
 
 export default function Menu() {
+  const dispatch = useDispatch();
+
   return (
     <ul className="navbar-nav mr-auto">
       <li className="nav-item">
-        <NavLink exact className="nav-link" to="/">
+        <NavLink
+          exact
+          className="nav-link"
+          to="/"
+          onClick={() => {
+            dispatch(changeSearchField(""));
+          }}
+        >
           Главная
         </NavLink>
       </li>
