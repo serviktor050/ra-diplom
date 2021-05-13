@@ -1,7 +1,7 @@
 import "./App.css";
 import {
   BrowserRouter as Router,
-  Redirect,
+  //Redirect,
   Route,
   Switch,
 } from "react-router-dom";
@@ -18,7 +18,7 @@ import Product from "./components/Pages/Product";
 function App() {
   return (
     <Router>
-      <Redirect from="/ra_diplom/" to="/" />
+      {/* <Redirect from="/ra_diplom/" to="/" /> */}
       <Header />
       <Switch>
         <Route path="/catalog/:id.html" component={Product} />
@@ -26,7 +26,7 @@ function App() {
         <Route path="/contacts.html" component={Contacts} />
         <Route path="/about.html" component={About} />
         <Route path="/catalog.html" component={Catalog} />
-        <Route path="/ra_diplom/" component={Home} />
+        {/* <Route path="/ra_diplom/" component={Home} /> */}
         <Route exact path="/" component={Home} />
         <Route path="*" component={Page404} />
       </Switch>
