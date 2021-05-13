@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import Home from "./components/Pages/Home";
 import Catalog from "./components/Pages/Catalog";
 import About from "./components/Pages/About";
@@ -13,6 +18,7 @@ import Product from "./components/Pages/Product";
 function App() {
   return (
     <Router>
+      <Redirect from="/ra_diplom/" to="/" />
       <Header />
       <Switch>
         <Route path="/catalog/:id.html" component={Product} />
