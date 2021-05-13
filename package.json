@@ -1,9 +1,9 @@
 {
-  "name": "ra_diplom",
+  "name": "ra-diplom",
   "version": "0.1.0",
   "private": true,
   "author": "serviktor050",
-  "homepage": "https://serviktor050.github.io/ra_diplom/",
+  "homepage": "https://serviktor050.github.io/ra-diplom/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
