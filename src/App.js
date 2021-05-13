@@ -26,6 +26,7 @@ function App() {
         <Route path="/contacts.html" component={Contacts} />
         <Route path="/about.html" component={About} />
         <Route path="/catalog.html" component={Catalog} />
+        <Route path="/ra_diplom/" component={Home} />
         <Route exact path="/" component={Home} />
         <Route path="*" component={Page404} />
       </Switch>
