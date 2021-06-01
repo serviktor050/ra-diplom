@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import Banner from "../Banner";
-import { removeProduct, getProductsList } from "../../utils/cartStorage";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  addProductInCart,
+  addProductsInCart,
   removeProductInCart,
 } from "../../redux/cartList/actions/actionsCreators";
 import PlaceAnOrder from "../PlaceAnOrder";
@@ -11,11 +10,11 @@ import PlaceAnOrder from "../PlaceAnOrder";
 export default function Cart() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(addProductInCart(getProductsList()));
-  }, [dispatch]);
-
   const { productsList } = useSelector((state) => state.cartList);
+
+  useEffect(() => {
+    dispatch(addProductsInCart(productsList));
+  }, [dispatch, productsList]);
 
   let totalPrice;
 
@@ -67,7 +66,6 @@ export default function Cart() {
                           <button
                             className="btn btn-outline-danger btn-sm"
                             onClick={() => {
-                              removeProduct(`${product.id}${product.size}`);
                               dispatch(
                                 removeProductInCart(
                                   `${product.id}${product.size}`
